@@ -20,6 +20,8 @@ namespace Ecommerce.Controllers
         //Métodos dentro de um Controller são chamados de Actions
         public IActionResult Index()
         {
+            ViewBag.Produtos = _produtoDAO.Listar();
+            ViewBag.DataHora = DateTime.Now;
             return View();
         }
 
@@ -27,6 +29,35 @@ namespace Ecommerce.Controllers
         {
             return View();
         }
+
+        public IActionResult Remover(int? id)
+        {
+            if (id != null)
+            {
+                _produtoDAO.RemoverProduto(id);
+            }
+            else
+            {
+                //Redirecionar para página de erro
+            }
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Alterar(int? id)
+        {
+            if (id != null)
+            {
+                ViewBag.Produto = _produtoDAO.BuscarProdutoPorId(id);
+                //_produtoDAO.AlterarProduto(ViewBag.Produto);
+                return View();
+            }
+            else
+            {
+                //Redirecionar para página de erro
+            }
+            return RedirectToAction("Alterar");
+        }
+
 
         [HttpPost]
         public IActionResult Cadastrar(string txtNome, string txtDescricao, string txtPreco, string txtQuantidade)
@@ -39,12 +70,22 @@ namespace Ecommerce.Controllers
                 Quantidade = Convert.ToInt32(txtQuantidade)
             };
             _produtoDAO.Cadastrar(p);
-            return View();
+            return RedirectToAction("Index");
         }
 
-        //public string Index()
-        //{
-        //    return "Resultado sem uma página";
-        //}
+        [HttpPost]
+        public IActionResult Alterar(string txtId, string txtNome, string txtDescricao, string txtPreco, string txtQuantidade)
+        {
+            Produto p = _produtoDAO.BuscarProdutoPorId(Convert.ToInt32(txtId));
+
+            p.Nome = txtNome;
+            p.Descricao = txtDescricao;
+            p.Preco = Convert.ToDouble(txtPreco);
+            p.Quantidade = Convert.ToInt32(txtQuantidade);
+
+            _produtoDAO.AlterarProduto(p);
+
+            return RedirectToAction("Index");
+        }
     }
 }

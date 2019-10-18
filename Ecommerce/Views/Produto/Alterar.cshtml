@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Produto produto  = ViewBag.Produto;
+}
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -9,27 +13,28 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Cadastrar</title>
+    <title>Alterar</title>
 </head>
 <body>
-    <h1>Cadastrar Produto</h1>
+    <h1>Alterar Produto</h1>
     <div class="form-group">
-        <form asp-action="Cadastrar" method="post">
+        <form asp-action="Alterar" method="post">
             <!-- se necessário, pesquisar por "Tag helper" -->
+            <input type="hidden" name="txtId" readonly="" value="@produto.ProdutoId" />
+
             <label class="col-sm-2 col-form-label">Nome:</label>
-            <input class="form-control" type="text" name="txtNome" />
+            <input class="form-control" type="text" name="txtNome" value="@produto.Nome" />
 
             <label class="col-sm-2 col-form-label">Descrição:</label>
-            <input class="form-control" type="text" name="txtDescricao" />
+            <input class="form-control" type="text" name="txtDescricao" value="@produto.Descricao" />
 
             <label class="col-sm-2 col-form-label">Preço:</label>
-            <input class="form-control" type="text" name="txtPreco" />
+            <input class="form-control" type="text" name="txtPreco" value="@produto.Preco" />
 
             <label class="col-sm-2 col-form-label">Quantidade:</label>
-            <input class="form-control" type="text" name="txtQuantidade" />
+            <input class="form-control" type="text" name="txtQuantidade" value="@produto.Quantidade" />
 
-            @*<input type="submit" value="Cadastrar" />*@
-            <button type="submit" value="Cadastrar" class="btn btn-primary mb-2">Cadastrar</button>
+            <button type="submit" value="Salvar" class="btn btn-primary mb-2">Salvar</button>
         </form>
     </div>
 
