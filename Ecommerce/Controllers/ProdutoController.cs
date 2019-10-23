@@ -20,9 +20,8 @@ namespace Ecommerce.Controllers
         //Métodos dentro de um Controller são chamados de Actions
         public IActionResult Index()
         {
-            ViewBag.Produtos = _produtoDAO.Listar();
             ViewBag.DataHora = DateTime.Now;
-            return View();
+            return View(_produtoDAO.Listar());
         }
 
         public IActionResult Cadastrar()
@@ -47,9 +46,7 @@ namespace Ecommerce.Controllers
         {
             if (id != null)
             {
-                ViewBag.Produto = _produtoDAO.BuscarProdutoPorId(id);
-                //_produtoDAO.AlterarProduto(ViewBag.Produto);
-                return View();
+                return View(_produtoDAO.BuscarProdutoPorId(id));
             }
             else
             {
@@ -60,31 +57,16 @@ namespace Ecommerce.Controllers
 
 
         [HttpPost]
-        public IActionResult Cadastrar(string txtNome, string txtDescricao, string txtPreco, string txtQuantidade)
+        public IActionResult Cadastrar(Produto p)
         {
-            Produto p = new Produto
-            {
-                Nome = txtNome,
-                Descricao = txtDescricao,
-                Preco = Convert.ToDouble(txtPreco),
-                Quantidade = Convert.ToInt32(txtQuantidade)
-            };
             _produtoDAO.Cadastrar(p);
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public IActionResult Alterar(string txtId, string txtNome, string txtDescricao, string txtPreco, string txtQuantidade)
+        public IActionResult Alterar(Produto p)
         {
-            Produto p = _produtoDAO.BuscarProdutoPorId(Convert.ToInt32(txtId));
-
-            p.Nome = txtNome;
-            p.Descricao = txtDescricao;
-            p.Preco = Convert.ToDouble(txtPreco);
-            p.Quantidade = Convert.ToInt32(txtQuantidade);
-
             _produtoDAO.AlterarProduto(p);
-
             return RedirectToAction("Index");
         }
     }

@@ -1,5 +1,6 @@
-﻿@{    
-    List <Produto> produtos = ViewBag.Produtos;
+﻿@model List<Produto>
+@{
+    //List <Produto> produtos = ViewBag.Produtos;
     DateTime dataHora = DateTime.Now;
 }
 
@@ -21,7 +22,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Produto item in produtos)
+        @foreach (Produto item in Model)
         {
             <tr>
                 <td>@item.Nome</td>
@@ -30,10 +31,12 @@
                 <td>@item.Quantidade</td>
                 <td>@item.CriadoEm</td>
                 <td>
-                    <a class="btn btn-outline-danger" asp-action="Remover" asp-route-id="@item.ProdutoId">Remover</a>
+                    <a asp-action="Remover" asp-route-id="@item.ProdutoId"
+                       class="btn btn-outline-danger">Remover</a>
                 </td>
                 <td>
-                    <a class="btn btn-outline-secondary" asp-action="Alterar" asp-route-id="@item.ProdutoId">Alterar</a>
+                    <a asp-action="Alterar" asp-route-id="@item.ProdutoId"
+                       class="btn btn-outline-secondary">Alterar</a>
                 </td>
             </tr>
         }

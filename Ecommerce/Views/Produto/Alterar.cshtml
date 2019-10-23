@@ -1,33 +1,30 @@
-﻿@{
-    Produto produto = ViewBag.Produto;
-}
-
+﻿@model Produto
 
 <form asp-action="Alterar" method="post">
     <fieldset>
         <legend>Alterar Produto</legend>
 
         <!-- se necessário, pesquisar por "Tag helper" -->
-        <input type="hidden" name="txtId" readonly="" value="@produto.ProdutoId" />
+        <input type="hidden" asp-for="ProdutoId" readonly="" />
 
         <div class="form-group" id="Nome">
             <label>Nome:</label>
-            <input class="form-control" type="text" name="txtNome" value="@produto.Nome" />
+            <input type="text" asp-for="Nome" class="form-control" />
         </div>
 
         <div class="form-group" id="Descricao">
             <label>Descrição:</label>
-            <input class="form-control" type="text" name="txtDescricao" value="@produto.Descricao" />
+            <input type="text" asp-for="Descricao" class="form-control" />
         </div>
 
         <div class="form-group" id="Preco">
             <label>Preço:</label>
-            <input class="form-control" type="text" name="txtPreco" value="@produto.Preco" />
+            <input type="text" asp-for="Preco" class="form-control" />
         </div>
 
         <div class="form-group" id="Quantidade">
             <label>Quantidade:</label>
-            <input class="form-control" type="text" name="txtQuantidade" value="@produto.Quantidade" />
+            <input type="text" asp-for="Quantidade" class="form-control" />
         </div>
 
         <button type="submit" value="Salvar" class="btn btn-primary">Salvar</button>
