@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Ecommerce.DAL;
-using Ecommerce.Models;
+using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Repository;
 
 namespace Ecommerce.Controllers
 {
@@ -21,7 +21,7 @@ namespace Ecommerce.Controllers
         public IActionResult Index()
         {
             ViewBag.DataHora = DateTime.Now;
-            return View(_produtoDAO.Listar());
+            return View(_produtoDAO.ListarTodos());
         }
 
         public IActionResult Cadastrar()
@@ -46,7 +46,7 @@ namespace Ecommerce.Controllers
         {
             if (id != null)
             {
-                return View(_produtoDAO.BuscarProdutoPorId(id));
+                return View(_produtoDAO.BuscarPorId(id));
             }
             else
             {
@@ -59,8 +59,16 @@ namespace Ecommerce.Controllers
         [HttpPost]
         public IActionResult Cadastrar(Produto p)
         {
-            _produtoDAO.Cadastrar(p);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                if (_produtoDAO.Cadastrar(p))
+                {
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", "Esse produto já existe!");
+                return View(p);
+            }
+            return View(p);
         }
 
         [HttpPost]
