@@ -19,6 +19,35 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cadastro</a>
+                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
+                        <a class="dropdown-item" href="~/Categoria/Create">Categoria</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="~/Produto/Cadastrar">Produto</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="~/Usuario/Cadastrar">Usuário</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Relatório</a>
+                    <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
+                        <a class="dropdown-item" href="~/Categoria/Index">Categoria</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="~/Produto/Index">Produto</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="~/Usuario/Index">Usuário</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Vazio</a>
+                </li>
+            </ul>
+        </div>
+
     </nav>
 
     @* Conteúdo *@

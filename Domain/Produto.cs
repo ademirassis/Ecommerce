@@ -35,6 +35,9 @@ namespace Domain
         [Range(1, 1000, ErrorMessage ="Os valores devem estar entre 1 e 1000")]
         public int Quantidade { get; set; }
 
+        [Display(Name = "Categoria do produto:")]
+        public Categoria Categoria { get; set; }
+
         public DateTime CriadoEm { get; set; }
     }
 }

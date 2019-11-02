@@ -27,6 +27,13 @@
             <input type="text" asp-for="Quantidade" class="form-control" />
         </div>
 
+        <div class="form-group" id="Categoria">
+            <label>Categoria:</label>
+            <select asp-items="@ViewBag.Categorias" asp-for="Categoria.Nome" class="form-control" name="drpCategorias">
+                <option value="value">-- Selecione --</option>
+            </select>
+        </div>
+
         <button type="submit" value="Salvar" class="btn btn-primary">Salvar</button>
     </fieldset>
 </form>

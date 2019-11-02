@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository;
 
 namespace Ecommerce.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20191030005419_AlterProduto")]
+    partial class AlterProduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,35 +27,11 @@ namespace Ecommerce.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Nome")
-                        .IsRequired();
+                    b.Property<string>("Nome");
 
                     b.HasKey("CategoriaId");
 
                     b.ToTable("Categorias");
-                });
-
-            modelBuilder.Entity("Domain.Endereco", b =>
-                {
-                    b.Property<int>("EnderecoId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Bairro");
-
-                    b.Property<string>("Cep");
-
-                    b.Property<DateTime>("CriadoEm");
-
-                    b.Property<string>("Localidade");
-
-                    b.Property<string>("Logradouro");
-
-                    b.Property<string>("Uf");
-
-                    b.HasKey("EnderecoId");
-
-                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("Domain.Produto", b =>
@@ -84,39 +62,11 @@ namespace Ecommerce.Migrations
                     b.ToTable("Produtos");
                 });
 
-            modelBuilder.Entity("Domain.Usuario", b =>
-                {
-                    b.Property<int>("UsuarioId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CriadoEm");
-
-                    b.Property<string>("Email");
-
-                    b.Property<int?>("EnderecoId");
-
-                    b.Property<string>("Senha");
-
-                    b.HasKey("UsuarioId");
-
-                    b.HasIndex("EnderecoId");
-
-                    b.ToTable("Usuarios");
-                });
-
             modelBuilder.Entity("Domain.Produto", b =>
                 {
                     b.HasOne("Domain.Categoria", "Categoria")
                         .WithMany()
                         .HasForeignKey("CategoriaId");
-                });
-
-            modelBuilder.Entity("Domain.Usuario", b =>
-                {
-                    b.HasOne("Domain.Endereco", "Endereco")
-                        .WithMany()
-                        .HasForeignKey("EnderecoId");
                 });
 #pragma warning restore 612, 618
         }

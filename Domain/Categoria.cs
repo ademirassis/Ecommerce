@@ -12,6 +12,7 @@ namespace Domain
         [Key]
         public int CategoriaId { get; set; }
 
+        [Required(ErrorMessage = "Campo obrigatório!")]
         public string Nome { get; set; }
     }
 }

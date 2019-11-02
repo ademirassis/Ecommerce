@@ -29,15 +29,22 @@ namespace Ecommerce
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+
+                // ALTERAR temporariamente, senao criar mensagem para o usuário aceitar-->  options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
 
             // Configurando a injeção de dependência
             services.AddScoped<ProdutoDAO>();
+            services.AddScoped<CategoriaDAO>();
             services.AddDbContext<Context>(options => options.UseSqlServer
             (Configuration.GetConnectionString("EcommerceConnection")));
+
+            // Configuração da sessão deve ser colocada ANTES do services.Add.Mvc()
+            services.AddSession();
+            services.AddDistributedMemoryCache();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -56,6 +63,8 @@ namespace Ecommerce
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            // ---> app.UseSession
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

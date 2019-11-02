@@ -55,3 +55,7 @@ C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\bin\Debug\net
 C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\bin\Debug\netcoreapp2.1\Domain.pdb
 C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\bin\Debug\netcoreapp2.1\Repository.dll
 C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\bin\Debug\netcoreapp2.1\Repository.pdb
+C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\obj\Debug\netcoreapp2.1\Razor\Views\Categoria\Create.g.cshtml.cs
+C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\obj\Debug\netcoreapp2.1\Razor\Views\Categoria\Edit.g.cshtml.cs
+C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\obj\Debug\netcoreapp2.1\Razor\Views\Categoria\Index.g.cshtml.cs
+C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\obj\Debug\netcoreapp2.1\Razor\Views\Usuario\Cadastrar.g.cshtml.cs
