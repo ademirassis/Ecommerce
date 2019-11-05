@@ -59,3 +59,4 @@ C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\obj\Debug\net
 C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\obj\Debug\netcoreapp2.1\Razor\Views\Categoria\Edit.g.cshtml.cs
 C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\obj\Debug\netcoreapp2.1\Razor\Views\Categoria\Index.g.cshtml.cs
 C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\obj\Debug\netcoreapp2.1\Razor\Views\Usuario\Cadastrar.g.cshtml.cs
+C:\Users\aiury\OneDrive\Git\Microsoft\Projetos\Ecommerce\Ecommerce\obj\Debug\netcoreapp2.1\Razor\Views\Usuario\Index.g.cshtml.cs

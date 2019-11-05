@@ -6,14 +6,23 @@ using System.Threading.Tasks;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Repository;
 
 namespace Ecommerce.Controllers
 {
     public class UsuarioController : Controller
     {
+        private readonly UsuarioDAO _usuarioDAO;
+
+        public UsuarioController(UsuarioDAO usuarioDAO)
+        {
+            _usuarioDAO = usuarioDAO;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            ViewBag.DataHora = DateTime.Now;
+            return View(_usuarioDAO.ListarTodos());
         }
 
         public IActionResult Cadastrar()
@@ -47,6 +56,18 @@ namespace Ecommerce.Controllers
         }
 
 
-
+        [HttpPost]
+        public IActionResult Cadastrar(Usuario u)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_usuarioDAO.Cadastrar(u))
+                {
+                    return RedirectToAction(nameof(Index));                
+                }
+                ModelState.AddModelError("", "Usuário já está cadastrado!");
+            }
+            return View(u);
+        }
     }
 }
