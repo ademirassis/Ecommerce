@@ -38,6 +38,9 @@ namespace Domain
         [Display(Name = "Categoria do produto:")]
         public Categoria Categoria { get; set; }
 
+        [Display(Name = "Imagem do produto:")]
+        public string Imagem { get; set; }
+
         public DateTime CriadoEm { get; set; }
     }
 }

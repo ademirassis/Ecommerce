@@ -16,6 +16,7 @@
             <th>Descrição</th>
             <th>Preço</th>
             <th>Quantidade</th>
+            <th>Imagem</th>
             <th>Criado em</th>
             <th></th>
             <th></th>
@@ -30,6 +31,9 @@
                 <td>@item.Preco.ToString("C2")</td>
                 <td>@item.Quantidade</td>
                 <td>@item.CriadoEm</td>
+                <td>
+                    <img src="~/images/@item.Imagem" alt="@item.Descricao" style="width:150px;height:auto" />
+                </td>
                 <td>
                     <a asp-action="Remover" asp-route-id="@item.ProdutoId"
                        class="btn btn-outline-danger">Remover</a>
