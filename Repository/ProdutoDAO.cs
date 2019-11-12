@@ -32,6 +32,12 @@ namespace Repository
             return _context.Produtos.ToList();
         }
 
+        public List<Produto> ListarPorCategoria(int? id)
+        {
+            return _context.Produtos.Include(x => x.Categoria).
+                Where(x => x.Categoria.CategoriaId == id).ToList();
+        }
+
         public Produto BuscarPorId(int? id)
         {
             return _context.Produtos.Find(id);
