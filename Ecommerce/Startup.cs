@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Ecommerce.Utils;
 
 namespace Ecommerce
 {
@@ -40,6 +41,10 @@ namespace Ecommerce
             services.AddScoped<ProdutoDAO>();
             services.AddScoped<CategoriaDAO>();
             services.AddScoped<UsuarioDAO>();
+            services.AddScoped<ItemVendaDAO>();
+            services.AddScoped<UtilsSession>();
+            services.AddHttpContextAccessor();
+
             services.AddDbContext<Context>(options => options.UseSqlServer
             (Configuration.GetConnectionString("EcommerceConnection")));
 

@@ -64,7 +64,7 @@ using Domain;
             WriteLiteral("\r\n<h2>Gerenciamento de Usuários</h2>\r\n");
             EndContext();
             BeginContext(112, 68, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4107f9eced1f4cc1867f7890f1d61145", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "521c7645ad7b4d22bb31b2a39b83a11e", async() => {
                 BeginContext(159, 17, true);
                 WriteLiteral("Cadastrar Usuário");
                 EndContext();
