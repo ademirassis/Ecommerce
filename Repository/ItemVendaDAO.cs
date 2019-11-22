@@ -22,9 +22,25 @@ namespace Repository
 
         public bool Cadastrar(ItemVenda i)
         {
-            _context.ItensVenda.Add(i);
+            ItemVenda itemAux = _context.ItensVenda.
+                FirstOrDefault(x => x.Produto.ProdutoId == i.Produto.ProdutoId && 
+                x.CarrinhoId.Equals(i.CarrinhoId));
+            if (itemAux == null)
+            {
+                _context.ItensVenda.Add(i);
+            }
+            else
+            {
+                itemAux.Quantidade++;
+            }
             _context.SaveChanges();
             return true;
+        }
+
+        public void Remover(int id)
+        {
+            _context.ItensVenda.Remove(BuscarPorId(id));
+            _context.SaveChanges();
         }
 
         public List<ItemVenda> ListarTodos()
@@ -38,6 +54,36 @@ namespace Repository
                 .Where(x => x.CarrinhoId.Equals(carrinhoId))
                 .ToList();
 
+        }
+
+        public double RetornarTotalCarrinho(string carrinhoId)
+        {
+            return _context.ItensVenda.
+                Where(x => x.CarrinhoId.Equals(carrinhoId)).
+                Sum(x => x.Quantidade * x.Preco);
+        }
+
+        public void Alterar(ItemVenda i)
+        {
+            _context.ItensVenda.Update(i);
+            _context.SaveChanges();
+        }
+
+        public void AumentarQuantidade(int id)
+        {
+            ItemVenda i = BuscarPorId(id);
+            i.Quantidade++;
+            Alterar(i);
+        }
+
+        public void DiminuirQuantidade(int id)
+        {
+            ItemVenda i = BuscarPorId(id);
+            if (i.Quantidade > 1)
+            {
+                i.Quantidade--;
+                Alterar(i);
+            }
         }
     }
 }

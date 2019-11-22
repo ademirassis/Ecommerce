@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<UsuarioLogado> SignManager
+@inject Microsoft.AspNetCore.Identity.UserManager<UsuarioLogado> UserManager
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -21,7 +24,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Cadastro</a>
                     <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 40px, 0px);">
@@ -43,8 +46,37 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Vazio</a>
+                    <a class="nav-link"
+                       asp-action="CarrinhoCompras"
+                       asp-controller="Home">
+                        <h5>
+                            Carrinho
+                            <span class="badge badge-secondary">
+                                Fake
+                            </span>
+                        </h5>
+                    </a>
                 </li>
+                @if (SignManager.IsSignedIn(User))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-action="Logout"
+                           asp-controller="Usuario">
+                            <h5>Olá @UserManager.GetUserName(User) - Logout </h5>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-action="Login"
+                           asp-controller="Usuario">
+                            <h5> Login </h5>
+                        </a>
+                    </li>
+                }
             </ul>
         </div>
 

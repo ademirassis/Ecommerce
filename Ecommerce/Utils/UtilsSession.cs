@@ -15,15 +15,17 @@ namespace Ecommerce.Utils
             _http = http;
         }
 
-        public string RetornarCarrinhoId()
+        public string RetonarCarrinhoId()
         {
-            if (_http.HttpContext.Session.GetString(CARRINHO_ID) == null)
+            if (_http.HttpContext.Session.
+                GetString(CARRINHO_ID) == null)
             {
-                _http.HttpContext.Session.SetString(CARRINHO_ID, Guid.NewGuid().ToString());
+                _http.HttpContext.Session.SetString
+                    (CARRINHO_ID, Guid.NewGuid().ToString());
             }
-
-            return _http.HttpContext.Session.GetString(CARRINHO_ID);
+            return _http.HttpContext.Session.
+                GetString(CARRINHO_ID);
         }
-
     }
+
 }

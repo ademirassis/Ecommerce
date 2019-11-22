@@ -38,5 +38,69 @@ Update-Database -verbose
 
 
 
-Add-Migration Categoria -Project: Repository
+Add-Migration CriarBanco -Project: Repository
 Update-Database -verbose -Project: Repository
+
+
+----------------------------------
+
+1. Criar a classe modelo para controlar o usuário logado e herdar IdentityUser
+
+2. Instalar Microsoft.AspNetCore.Identity.EntityFrameworkCore 2.1.6
+
+3. Fazer a  heraça no Context do IdentityDbContext
+
+4. Configurar o Identity no Startup.cs
+
+//Configurar o Identity na aplicação
+services.AddIdentity<UsuarioLogado, IdentityRole>().
+                AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
+
+services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Usuario/Login";
+                options.AccessDeniedPath = "/Usuario/AcessoNegado";
+            });
+
+
+5. Insere anotação nas Controller
+			[Authorize]
+		    //[Authorize(Roles = "ADM")] // envolve permissões de acesso
+
+
+			criar objeto do usuário logado na UsuarioController  e mudar assinatura do método --> async Task<IActionResult>
+        public async Task<IActionResult> Cadastrar(Usuario u)
+        {
+            // Criar um objeto UsuarioLogado e passar obrigatoriamente o Email e UserName
+            UsuarioLogado usuarioLogado = new UsuarioLogado
+            {
+                Email = u.Email,
+                UserName = u.Email
+            };
+            IdentityResult result = await _userManager.CreateAsync(usuarioLogado, u.Senha);
+
+
+			        private readonly UsuarioDAO _usuarioDAO;
+        private readonly UserManager<UsuarioLogado> _userManager;
+        private readonly SignInManager<UsuarioLogado> _signManager;
+
+        public UsuarioController(UsuarioDAO usuarioDAO, UserManager<UsuarioLogado> userManager, SignInManager<UsuarioLogado> signManager)
+        {
+            _usuarioDAO = usuarioDAO;
+            _userManager = userManager;
+            _signManager = signManager;
+        }
+
+
+
+6. Deletar o banco e migrações e gerar o banco novamente
+
+7. Iplementar o cadastro do usuário pela biblioteca
+
+7. Criar a área de login
+
+8. Criar a área de logout
+
+9. Alterar barra de navegação para mostrar o usuário logado
+
+

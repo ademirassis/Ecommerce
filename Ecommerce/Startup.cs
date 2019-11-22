@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ecommerce.Utils;
+using Microsoft.AspNetCore.Identity;
 
 namespace Ecommerce
 {
@@ -52,6 +53,16 @@ namespace Ecommerce
             services.AddSession();
             services.AddDistributedMemoryCache();
 
+            //Configurar o Identity na aplicação
+            services.AddIdentity<UsuarioLogado, IdentityRole>().
+                AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Usuario/Login";
+                options.AccessDeniedPath = "/Usuario/AcessoNegado";
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -71,6 +82,7 @@ namespace Ecommerce
             app.UseCookiePolicy();
             // ---> app.UseSession
             app.UseSession();
+            app.UseAuthentication(); //<--- incluir para o acesso de login
 
             app.UseMvc(routes =>
             {
